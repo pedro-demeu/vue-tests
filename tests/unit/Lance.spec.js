@@ -5,5 +5,10 @@ test('Não aceita lance com valor menor do que 0', () => {
 
     //Monta um componente e testa se funcionou
     const wrapper = mount(Lance)
-    expect(wrapper).toBeTruthy()
+
+    const input = wrapper.find('input')
+
+    input.setValue(-100)
+
+    expect(input).toBeTruthy()
 })
