@@ -33,4 +33,17 @@ describe('Um avaliador que se conecta com a API', () => {
         const totalLeiloesExibidos = wrapper.findAll('.leilao').length
         expect(totalLeiloesExibidos).toBe(leiloes.length)
     })
+    test('não há leilões retornados pela API', async () => {
+        getLeiloes.mockResolvedValueOnce([])
+        const wrapper = mount(Avaliador, {
+            stubs: {
+                RouterLink: RouterLinkStub
+            }
+        })
+
+        await flushPromises()
+
+        const totalLeiloesExibidos = wrapper.findAll('.leilao').length
+        expect(totalLeiloesExibidos).toBe(0)
+    })
 })
